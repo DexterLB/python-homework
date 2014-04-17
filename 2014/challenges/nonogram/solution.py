@@ -1,7 +1,7 @@
 class nonogram(list):
     def transpose(self):
         return nonogram([list(column) for column in zip(*self)])
-    
+
     def row_counts(self):
         row_groups = []
         for row in self:
@@ -20,8 +20,9 @@ class nonogram(list):
         return row_groups
 
     def keys(self):
-        return { 'rows': self.row_counts(),
-                 'columns': self.transpose().row_counts() }
+        return {'rows': self.row_counts(),
+                'columns': self.transpose().row_counts()}
+
 
 def validate_nonogram(matrix, keys):
     return nonogram(matrix).keys() == keys
