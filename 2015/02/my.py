@@ -17,6 +17,7 @@ def flatten_dict(tree):
             flattened[key] = value
     return flattened
 
+
 def insert_path(tree, path, value):
     if '.' not in path:
         tree[path] = value
@@ -26,11 +27,13 @@ def insert_path(tree, path, value):
             tree[key] = {}
         insert_path(tree[key], path, value)
 
+
 def unflatten_dict(flattened):
     tree = {}
     for key, value in flattened.items():
         insert_path(tree, key, value)
     return tree
+
 
 def reps(collection):
     repeated = {item for item in collection if collection.count(item) > 1}
