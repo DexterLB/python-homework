@@ -22,10 +22,11 @@ def primes():
 
 
 def alphabet(*, code=None, letters=""):
-    if code == 'lat':
-        letters = 'abcdefghijklmnopqrstuvwxyz'
-    elif code == 'bg':
-        letters = 'абвгдежзийклмнопрстуфхцчшщъьюя'
+    if not letters:
+        if code == 'lat':
+            letters = 'abcdefghijklmnopqrstuvwxyz'
+        elif code == 'bg':
+            letters = 'абвгдежзийклмнопрстуфхцчшщъьюя'
     return (letter for letter in letters)
 
 
