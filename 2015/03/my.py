@@ -29,19 +29,14 @@ def alphabet(*, code=None, letters=""):
     return (letter for letter in letters)
 
 
-def call_sequence(sequence_name, arguments, extra_definitions):
+def intertwined_sequences(sequences, *, generator_definitions={}):
     sequence_functions = {
         'alphabet': alphabet,
         'primes': primes,
         'fibonacci': fibonacci
     }
+    sequence_functions.update(generator_definitions)
 
-    sequence_functions.update(extra_definitions)
-
-    return sequence_functions[sequence_name](**arguments)
-
-
-def intertwined_sequences(sequences, *, generator_definitions={}):
     sequence_iterators = {}
     for sequence in sequences:
         sequence_arguments = dict(sequence)
@@ -50,9 +45,9 @@ def intertwined_sequences(sequences, *, generator_definitions={}):
         length = sequence_arguments.pop('length')
 
         if sequence_name not in sequence_iterators:
-            sequence_iterators[sequence_name] = call_sequence(
-                    sequence_name, sequence_arguments, generator_definitions
-            )
+            sequence_iterators[sequence_name] = sequence_functions[
+                sequence_name
+            ](**sequence_arguments)
 
         iterator = sequence_iterators[sequence_name]
 
