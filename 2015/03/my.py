@@ -18,7 +18,9 @@ def is_prime(number):
 
 
 def primes():
-    return (number for number in count(1) if is_prime(number))
+    for number in count(1):
+        if is_prime(number):
+            yield number
 
 
 def alphabet(*, code=None, letters=""):
@@ -27,7 +29,8 @@ def alphabet(*, code=None, letters=""):
             letters = 'abcdefghijklmnopqrstuvwxyz'
         elif code == 'bg':
             letters = 'абвгдежзийклмнопрстуфхцчшщъьюя'
-    return (letter for letter in letters)
+    for letter in letters:
+        yield letter
 
 
 def intertwined_sequences(sequences, *, generator_definitions={}):
